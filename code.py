@@ -122,3 +122,16 @@ def simulate_ntm(machine, input_string, max_depth=None): #BFS simulation of NTM/
     return None 
 
 
+# Example Usage
+machine_file = input('What test file would you like to run?\n')
+machine_file = f'test/{machine_file}'
+max_depth = 20
+
+machine = parse_csv(machine_file)
+string = machine['string_read']
+
+# Iterate over each string and simulate
+print(f"Running simulation for: {string}")
+result = simulate_ntm(machine, string, max_depth)
+print(f"Solution depth for string '{string}': {result}")
+
