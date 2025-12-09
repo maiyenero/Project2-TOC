@@ -32,13 +32,16 @@ def parse_csv(file_path): #dictionary for TM
         'string_read': string_read  # list of strings to process
     }
 
+
 def simulate_ntm(machine, input_string, max_depth=None): #BFS simulation of NTM/endds with accept or tries everything
-    print(f'Running machine -  {machine["name"]}\nstring -  {input_string}')
-    start_config = (machine['start_state'], input_string, 0)  # (state, tape, head_pos)
-    tree = [[start_config]] #levels of configurations
+    #print(f"Tracing NTM: {self.machine_name} on input '{input_string}'")
+    print(f'Tracing NTM: {machine["name"]}\nstring -  {input_string}')
+    inital_config = (machine['start_state'], input_string, 0)  # (state, tape, head_pos)
+    tree = [inital_config] #levels of configurations
     transitions = machine['transitions']
     accept_state = machine['accept_state']
     reject_state = machine['reject_state']
+
 
     #variables to keep track
     total_transitions = 0
@@ -124,7 +127,7 @@ def simulate_ntm(machine, input_string, max_depth=None): #BFS simulation of NTM/
 
 # example Usage
 machine_file = input('What test file would you like to run?\n')
-machine_file = f'test/{machine_file}'
+machine_file = f'input/{machine_file}'
 max_depth = 20
 
 machine = parse_csv(machine_file)
@@ -134,4 +137,3 @@ string = machine['string_read']
 print(f"Running simulation for: {string}")
 result = simulate_ntm(machine, string, max_depth)
 print(f"Solution depth for string '{string}': {result}")
-
